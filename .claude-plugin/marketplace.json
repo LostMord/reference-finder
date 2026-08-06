@@ -1,0 +1,33 @@
+{
+  "name": "lostmord-tools",
+  "owner": {
+    "name": "LostMord",
+    "url": "https://github.com/LostMord"
+  },
+  "description": "Focused workflow tools for visual research and web design.",
+  "plugins": [
+    {
+      "name": "reference-finder",
+      "source": {
+        "source": "github",
+        "repo": "LostMord/reference-finder"
+      },
+      "description": "Find and compare Pinterest references before starting a visual design or redesign.",
+      "author": {
+        "name": "LostMord"
+      },
+      "homepage": "https://github.com/LostMord/reference-finder",
+      "repository": "https://github.com/LostMord/reference-finder",
+      "category": "Design",
+      "tags": [
+        "pinterest",
+        "design-references",
+        "ui-ux",
+        "web-design",
+        "moodboard"
+      ],
+      "strict": true
+    }
+  ]
+}
+

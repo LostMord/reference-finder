@@ -5,7 +5,7 @@ description: Find, shortlist, and compare visual references from Pinterest for w
 
 # Find Visual References
 
-Use an authenticated Pinterest session in the supported in-app browser to turn visual research into a user-approved design direction. Keep research separate from implementation.
+Use an authenticated Pinterest session in a supported interactive browser to turn visual research into a user-approved design direction. Keep research separate from implementation.
 
 ## Guardrails
 
@@ -48,11 +48,17 @@ Prefer concise English queries for broader visual coverage, but include the proj
 
 Use Pinterest as the primary source. Use another source only when the user requests it or explicitly accepts a fallback.
 
-Use the supported Browser integration and follow its browser-control instructions. Open Pinterest directly and reuse the user's existing signed-in session. If the user did not choose a browser, use the browser selected by the runtime for the Pinterest URL.
+Use the browser integration available in the current host and follow its control instructions:
+
+- In Codex, use the supported Browser integration and let the runtime select the browser for the Pinterest URL unless the user chose one explicitly.
+- In Claude Code, use Claude in Chrome so Pinterest opens with the user's existing signed-in session. If Chrome tools are unavailable, ask the user to enable `/chrome` or restart with `claude --chrome`, then continue after the connection is ready.
+- In another Agent Skills host, use an interactive browser that supports the user's authenticated session and screenshots.
+
+Open Pinterest directly. Do not replace an unavailable authenticated browser with credential scraping or an unrelated source.
 
 Collect approximately 12 to 20 viable candidates before shortlisting. Prefer specific Pin pages over search-result URLs. Record only information visible on Pinterest and keep the direct Pin URL for each candidate.
 
-If the Browser integration is unavailable, state that this plugin requires it. Do not imitate an authenticated Pinterest integration by reading browser profiles or by scraping credentials. Offer a domain-filtered public web search only as an explicitly labeled fallback.
+If no supported interactive browser is available, state that the authenticated Pinterest workflow requires one. Do not imitate browser access by reading profiles, cookies, session files, or credentials. Offer a domain-filtered public web search only as an explicitly labeled fallback.
 
 ### 4. Curate a diverse shortlist
 
@@ -79,8 +85,9 @@ Show a compact numbered selection. Prefer a visual grid with readable thumbnails
 ### Deliver previews reliably
 
 - Do not embed Pinterest CDN URLs, including `i.pinimg.com` URLs, as Markdown images. The chat renderer does not share the authenticated browser session, so these images can appear as broken placeholders.
-- Capture each shortlisted Pin or its visible search-result card with the Browser screenshot capability while Pinterest is open in the authenticated browser session.
-- Return the captured screenshot bytes as actual image attachments using the supported image-output mechanism. When the Browser runtime exposes `nodeRepl.emitImage(...)`, emit the screenshots in shortlist order and keep the numbered text in the same order.
+- Capture each shortlisted Pin or its visible search-result card with the browser's screenshot capability while Pinterest is open in the authenticated session.
+- Return captured screenshots through the host's native image-output mechanism. Forward image bytes directly when the browser tool returns image content; do not convert them into remote Markdown URLs.
+- In Codex, follow the Browser integration's image-forwarding instructions. In Claude Code, use Claude in Chrome screenshots; if the current Claude surface cannot display them inline, save the screenshots to a task-scoped directory and provide their local paths beside the numbered Pin links.
 - Place the direct Pinterest Pin link in the accompanying numbered text. The screenshot is the preview; the Pin URL is the source link.
 - Before presenting the shortlist, confirm that every candidate has both a captured preview and a specific Pin URL.
 - If screenshots cannot be captured or attached, present a link-only shortlist and explicitly say that previews are unavailable. Never send broken remote-image placeholders as a fallback.

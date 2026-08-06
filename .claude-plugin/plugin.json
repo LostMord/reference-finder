@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "reference-finder",
+  "displayName": "Reference Finder",
+  "version": "0.2.0",
+  "description": "Find and compare Pinterest references before starting a visual design or redesign.",
+  "author": {
+    "name": "LostMord",
+    "url": "https://github.com/LostMord"
+  },
+  "homepage": "https://github.com/LostMord/reference-finder",
+  "repository": "https://github.com/LostMord/reference-finder",
+  "keywords": [
+    "pinterest",
+    "design-references",
+    "ui-ux",
+    "web-design",
+    "moodboard"
+  ],
+  "skills": "./skills/"
+}
+
