@@ -76,6 +76,15 @@ Show a compact numbered selection. Prefer a visual grid with readable thumbnails
 - one short note explaining the relevant design idea;
 - the main dimension it represents, such as composition, typography, color, or motion.
 
+### Deliver previews reliably
+
+- Do not embed Pinterest CDN URLs, including `i.pinimg.com` URLs, as Markdown images. The chat renderer does not share the authenticated browser session, so these images can appear as broken placeholders.
+- Capture each shortlisted Pin or its visible search-result card with the Browser screenshot capability while Pinterest is open in the authenticated browser session.
+- Return the captured screenshot bytes as actual image attachments using the supported image-output mechanism. When the Browser runtime exposes `nodeRepl.emitImage(...)`, emit the screenshots in shortlist order and keep the numbered text in the same order.
+- Place the direct Pinterest Pin link in the accompanying numbered text. The screenshot is the preview; the Pin URL is the source link.
+- Before presenting the shortlist, confirm that every candidate has both a captured preview and a specific Pin URL.
+- If screenshots cannot be captured or attached, present a link-only shortlist and explicitly say that previews are unavailable. Never send broken remote-image placeholders as a fallback.
+
 Do not overwhelm the user with the full research pool or long design commentary.
 
 Ask the user to select up to three references and say what they like or dislike. A good prompt is: `Какие номера ближе? Что именно берем: композицию, типографику, цвет, атмосферу или механику? Что точно не использовать?`
@@ -106,3 +115,4 @@ Consider the research complete only when:
 - the user has made or declined a selection;
 - the resulting direction clearly records both desired qualities and exclusions;
 - no project files or external Pinterest content were changed during research.
+
