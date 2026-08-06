@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reference Finder"
+  short_description: "Find and compare visual design references"
+  default_prompt: "Use $find-visual-references to find Pinterest references and help me choose a visual direction."
