@@ -1,0 +1,25 @@
+{
+  "name": "reference-finder",
+  "version": "0.1.0+codex.20260806000908",
+  "description": "Visual reference research and direction approval for web design, with Pinterest as the primary source.",
+  "author": {
+    "name": "LostMord"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Reference Finder",
+    "shortDescription": "Find and approve visual references before design.",
+    "longDescription": "Searches Pinterest through an authenticated browser session, curates a focused visual shortlist, asks the user to choose a direction, and keeps reference research separate from implementation.",
+    "developerName": "LostMord",
+    "category": "Design",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Find Pinterest references for this design.",
+      "Compare visual directions before implementation."
+    ],
+    "brandColor": "#FF5068",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/logo.svg",
+    "logoDark": "./assets/logo-dark.svg"
+  }
+}
